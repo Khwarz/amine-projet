@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(),
+      home: ThirdPage(),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -175,6 +175,145 @@ class _SecondaryPage extends State<SecondaryPage> {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class ThirdPage extends StatefulWidget {
+  ThirdPage({Key key, this.title}) : super(key: key);
+  final String title;
+
+  @override
+  _ThirdPage createState() => _ThirdPage();
+}
+
+class _ThirdPage extends State<ThirdPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        centerTitle: true,
+        title:
+            Text("Suivi des commandes", style: TextStyle(color: Colors.green)),
+        leading: Icon(Icons.menu, color: Colors.grey[800]),
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.notifications,
+              color: Colors.grey[800],
+            ),
+            onPressed: () {},
+          ),
+        ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "#1025",
+                style: Theme.of(context).textTheme.headline6.copyWith(
+                      color: Colors.grey[700],
+                    ),
+              ),
+            ),
+            SizedBox(height: 8.0),
+            ThirdPageItem(
+              active: true,
+              icon: Icon(
+                Icons.list,
+                color: Colors.white,
+              ),
+              trailing: "il y a 2 minutes",
+              leading: "Commande reçu",
+            ),
+            SizedBox(height: 6.0),
+            ThirdPageItem(
+              active: false,
+              icon: Icon(
+                Icons.timer,
+                color: Colors.white,
+              ),
+              trailing: "il y a 3 minutes",
+              leading: "En préparation",
+            ),
+            SizedBox(height: 6.0),
+            ThirdPageItem(
+              active: false,
+              icon: Icon(
+                Icons.thumb_up,
+                color: Colors.white,
+              ),
+              trailing: "il y a 4 minutes",
+              leading: "Prêt",
+            ),
+            SizedBox(height: 6.0),
+            ThirdPageItem(
+              active: false,
+              icon: Icon(
+                Icons.pedal_bike,
+                color: Colors.white,
+              ),
+              trailing: "il y a 5 minutes",
+              leading: "En chemin",
+            ),
+            SizedBox(height: 6.0),
+            ThirdPageItem(
+              active: false,
+              icon: Icon(
+                Icons.check,
+                color: Colors.white,
+              ),
+              trailing: "il y a 6 minutes",
+              leading: "Livré",
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ThirdPageItem extends StatelessWidget {
+  final bool active;
+  final Icon icon;
+  final String leading;
+  final String trailing;
+  ThirdPageItem({this.active, this.icon, this.leading, this.trailing});
+
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.04),
+            offset: Offset(0, 2),
+            blurRadius: 3,
+          ),
+          BoxShadow(
+            color: Colors.black.withOpacity(0.08),
+            offset: Offset(0, 3),
+            blurRadius: 2,
+          ),
+        ],
+        color: Colors.white,
+      ),
+      child: ListTile(
+        title: Text(this.leading),
+        leading: CircleAvatar(
+          child: this.icon,
+          backgroundColor:
+              active ? Theme.of(context).primaryColor : Colors.grey[400],
+        ),
+        trailing: Text(
+          this.trailing,
         ),
       ),
     );
