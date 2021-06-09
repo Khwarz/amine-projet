@@ -42,6 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: DrawerWidget(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -88,6 +89,7 @@ class _SecondaryPage extends State<SecondaryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: DrawerWidget(),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -193,6 +195,7 @@ class _ThirdPage extends State<ThirdPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: DrawerWidget(),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -315,6 +318,36 @@ class ThirdPageItem extends StatelessWidget {
         trailing: Text(
           this.trailing,
         ),
+      ),
+    );
+  }
+}
+
+class DrawerWidget extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        children: [
+          DrawerHeader(
+            child: Column(children: [
+              CircleAvatar(child: Text("PU")),
+              Text("Pharmacie username"),
+            ]),
+          ),
+          Text("Préférences de l'application"),
+          ListTile(
+            leading: Icon(Icons.help),
+            title: Text("Support d'aide"),
+          ),
+          ListTile(
+            leading: Icon(Icons.settings),
+            title: Text("Paramètres"),
+          ),
+          ListTile(
+            leading: Icon(Icons.logout),
+            title: Text("Se déconnecter"),
+          ),
+        ],
       ),
     );
   }
